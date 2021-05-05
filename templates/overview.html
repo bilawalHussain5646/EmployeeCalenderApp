@@ -1,0 +1,49 @@
+{% extends "default.html" %} {% block title %}Month Overview{% endblock %} {%
+block content %}
+
+<div class="row">
+  <form action="/process" method="POST">
+    <div class="d-flex">
+      {% if PreviousShow == True %}
+      <div class="pt-30" style="margin: 1%">
+        <input type="text" name="marticule" value="{{marticule}}" hidden />
+        <input type="text" name="Month" value="{{month}}" hidden />
+        <button
+          type="submit"
+          class="btn btn-success"
+          name="action"
+          value="previousMonth"
+        >
+          Previous
+        </button>
+      </div>
+      {%endif%} {% if nextShow == True %}
+      <div class="pt-30" style="margin: 1%">
+        <input type="text" name="marticule" value="{{marticule}}" hidden />
+        <input type="text" name="Month" value="{{month}}" hidden />
+        <button
+          type="submit"
+          class="btn btn-success"
+          name="action"
+          value="nextMonth"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+    {%endif%}
+  </form>
+  {% if marticuleData == [] %} No Data found {% else %} {% for data in
+  marticuleData %}
+
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{data[1]}}</h5>
+      <p class="card-text">{{data[0]}} Hours</p>
+    </div>
+  </div>
+
+  {% endfor %} {%endif%}
+</div>
+
+{% endblock %}

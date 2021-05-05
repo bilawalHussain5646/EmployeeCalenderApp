@@ -1,0 +1,136 @@
+{% extends "default.html" %} {% block title %}{{marticule}}{% endblock %} {%
+block content %} {% if check==True %}
+<!--
+Date Check if true then display edit and delete button
+-->
+
+<form action="/<marticule>/<date_du_jour>" style="width: 40%" method="POST">
+  <div class="d-flex">
+    <div class="pt-30" style="margin: 1%">
+      <input type="text" name="marticule" value="{{marticule}}" hidden />
+      <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+      <button
+        type="submit"
+        class="btn btn-success"
+        name="action"
+        value="previousDate"
+      >
+        Previous
+      </button>
+    </div>
+    {% if count=="2" %}
+    <div class="pt-30" style="margin: 1%">
+      <input type="text" name="marticule" value="{{marticule}}" hidden />
+      <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+      <button
+        type="submit"
+        class="btn btn-success"
+        name="action"
+        value="nextDate"
+      >
+        Next
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</form>
+<form action="/<marticule>/<date_du_jour>" method="POST">
+  <div class="d-flex">
+    <input type="text" name="marticule" value="{{marticule}}" hidden />
+    <input type="number" min="1" max="24" name="timeOfDay" value="{{Time}}" />
+    <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+    <div class="p-t-30">
+      <button
+        class="btn btn-warning"
+        style="margin-left: 1%"
+        name="action"
+        value="update"
+      >
+        Edit
+      </button>
+    </div>
+    <div class="p-t-30" style="margin-left: 1%">
+      <button class="btn btn-danger" name="action" value="delete">
+        Delete
+      </button>
+    </div>
+  </div>
+</form>
+{% endif %} {% if check==False %}
+<!--
+Date Check if false then display input field
+-->
+
+<form action="/<marticule>/<date_du_jour>" style="width: 40%" method="POST">
+  <div class="d-flex">
+    <div class="pt-30" style="margin: 1%">
+      <input type="text" name="marticule" value="{{marticule}}" hidden />
+      <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+      <button
+        type="submit"
+        class="btn btn-success"
+        name="action"
+        value="previousDate"
+      >
+        Previous
+      </button>
+    </div>
+    {% if count=="2" %}
+    <div class="pt-30" style="margin: 1%">
+      <input type="text" name="marticule" value="{{marticule}}" hidden />
+      <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+      <button
+        type="submit"
+        class="btn btn-success"
+        name="action"
+        value="nextDate"
+      >
+        Next
+      </button>
+    </div>
+
+    {%endif%}
+  </div>
+</form>
+{% if count=="1" %}
+<form
+  action="/<marticule>/<date_du_jour>"
+  style="margin-left: 1%"
+  method="POST"
+>
+  <div class="d-flex">
+    <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+    <input type="text" name="marticule" value="{{marticule}}" hidden />
+    <input type="number" min="1" max="24" name="timeOfDay" />
+    <div style="margin-left: 1%">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        name="action"
+        value="addTodaysTime"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+</form>
+{%endif%}
+<h3 class="mt-2">{{Date}}</h3>
+<p>No Data Found</p>
+{% endif %}
+<form action="/process" method="POST">
+  <div class="p-t-30">
+    <input type="text" name="marticule" value="{{marticule}}" hidden />
+    <input type="text" name="dateOfDay" value="{{Date}}" hidden />
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      name="action"
+      value="overviewOfMonth"
+    >
+      OVERVIEW
+    </button>
+  </div>
+</form>
+
+{% endblock %}

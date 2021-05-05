@@ -1,0 +1,26 @@
+{% extends "default.html" %} {% block title %}Monthly Calendar{% endblock %} {%
+block content %}
+<div class="mt-5">
+  <div class="row">
+    {% if months == [] %} No Data found {% else %} {% for data in monthsName %}
+    <form action="/process" method="POST">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <input type="text" name="month" value="{{data[0]}}" hidden />
+          <input type="text" name="marticule" value="{{marticule}}" hidden />
+          <h5 class="card-title">{{data[1]}}</h5>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            name="action"
+            value="MonthSelect"
+          >
+            Select
+          </button>
+        </div>
+      </div>
+    </form>
+    {% endfor %} {%endif%}
+  </div>
+</div>
+{% endblock %}
